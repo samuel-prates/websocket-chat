@@ -73,7 +73,7 @@ export const resetUnreadCount = (
 export const formatMessageTime = (timestamp: string): string => {
   try {
     const date = new Date(timestamp);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit' , hour: '2-digit', minute: '2-digit' });
   } catch (e) {
     console.error('Error formatting timestamp:', e);
     return '';

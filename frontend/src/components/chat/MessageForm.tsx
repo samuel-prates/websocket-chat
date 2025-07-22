@@ -45,7 +45,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border-t">
+    <form onSubmit={handleSubmit} className="p-4 bg-gray-100 items-center">
       <div className="flex">
         <input
           type="text"

@@ -12,7 +12,6 @@ interface MessageListProps {
 const MessageList: React.FC<MessageListProps> = ({ messages, currentUser, selectedUser }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -26,20 +25,21 @@ const MessageList: React.FC<MessageListProps> = ({ messages, currentUser, select
   }
 
   return (
-    <div className="flex-1 p-4 overflow-y-auto">
-      <h2 className="text-xl font-bold mb-4">Chat with {selectedUser.username}</h2>
-      <div className="flex flex-col space-y-2">
+    <div className="flex-1 p-4 overflow-y-auto bg-white overflow-x-hidden">
+      <h2 className="text-xl font-bold mb-4 capitalize">{selectedUser.username}</h2>
+      <div className="flex flex-col space-y-2 p-5 m-[-18px] mt-5 h-full bg-gray-100">
         {messages.map((msg, index) => (
           <div 
             key={msg.id || index} 
-            className={`p-2 rounded relative ${
-              msg.from === currentUser._id ? 'bg-blue-200 self-end' : 'bg-gray-300 self-start'
+            className={`p-4 rounded-2xl relative ${
+              msg.from === currentUser._id ? 'bg-blue-700 text-gray-100 self-end' : 'bg-white text-gray-150 self-start'
             }`}
           >
-            <div>{msg.message}</div>
+            <div className="pb-2">{msg.message}</div>
             
-            {/* Time display */}
-            <div className="text-xs text-gray-500 mt-1">
+            <div className={`text-xs mt-1 ${
+              msg.from === currentUser._id ? 'text-gray-100' : 'text-gray-150'
+            }`}>
               {formatMessageTime(msg.timestamp)}
             </div>
 

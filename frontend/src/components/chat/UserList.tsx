@@ -18,7 +18,6 @@ const UserList: React.FC<UserListProps> = ({
   onSelectUser,
   onLogout
 }) => {
-  // Filter out the current user from the list
   const filteredUsers = users.filter(user => user.id !== currentUser._id);
 
   return (

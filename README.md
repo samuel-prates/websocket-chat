@@ -111,20 +111,50 @@ docker-compose down
 
 ```
 ixc-test/
-├── backend/             # Código do servidor Node.js (Express)
+├── backend/
 │   ├── src/
-│   │   ├── config/      # Configurações (MongoDB, Passport)
-│   │   ├── models/      # Modelos de dados (User, Message)
-│   │   ├── routes/      # Rotas da API (users, messages)
-│   │   └── index.js     # Ponto de entrada do servidor
-│   ├── Dockerfile       # Dockerfile para o backend
-│   └── docker-compose.yml # Configuração Docker Compose
-├── frontend/            # Código da aplicação React/Next.js
-│   ├── public/          # Arquivos estáticos
+│   │   ├── application/
+│   │   │   ├── domain/       # Entidades de domínio
+│   │   │   ├── ports/        # Interfaces (portas)
+│   │   │   └── usecases/     # Casos de uso
+│   │   ├── config/           # Configurações
+│   │   ├── infrastructure/
+│   │   │   └── adapters/     # Implementações de adaptadores
+│   │   │       ├── auth/     # Adaptadores de autenticação
+│   │   │       ├── http/     # Rotas e controladores HTTP
+│   │   │       ├── persistence/ # Repositórios e modelos
+│   │   │       └── realtime/ # Adaptadores para comunicação em tempo real
+│   │   └── index.js          # Ponto de entrada da aplicação
+│   ├── tests/
+│   │   ├── integration/      # Testes de integração
+│   │   └── unit/             # Testes unitários
+│   ├── docker-compose.yml    # Configuração do Docker Compose
+│   ├── Dockerfile            # Configuração do Docker
+│   └── package.json          # Dependências e scripts
+├── frontend/
+│   ├── public/                # Arquivos estáticos
 │   ├── src/
-│   │   ├── app/         # Páginas da aplicação (login, chat, register)
-│   │   └── components/  # Componentes reutilizáveis (LoginPage, ChatPage, RegisterPage)
-│   └── ...              # Outros arquivos de configuração do Next.js
+│   │   ├── app/              # Páginas da aplicação (Next.js App Router)
+│   │   │   ├── chat/         # Página de chat
+│   │   │   ├── register/     # Página de registro
+│   │   │   ├── page.tsx      # Página principal (login)
+│   │   │   └── layout.tsx    # Layout da aplicação
+│   │   ├── components/       # Componentes React
+│   │   │   ├── chat/         # Componentes específicos do chat
+│   │   │   │   ├── ChatHeader.tsx    # Cabeçalho do chat
+│   │   │   │   ├── MessageForm.tsx   # Formulário de mensagens
+│   │   │   │   ├── MessageList.tsx   # Lista de mensagens
+│   │   │   │   └── UserList.tsx      # Lista de usuários
+│   │   │   ├── ChatPage.tsx          # Página de chat
+│   │   │   ├── LoginPage.tsx         # Página de login
+│   │   │   └── RegisterPage.tsx      # Página de registro
+│   │   └── utils/            # Utilitários
+│   │       ├── authUtils.ts          # Utilitários de autenticação
+│   │       ├── messageUtils.ts       # Utilitários de mensagens
+│   │       ├── socketUtils.ts        # Utilitários de Socket.IO
+│   │       ├── storageUtils.ts       # Utilitários de armazenamento local
+│   │       └── __tests__/            # Testes unitários
+│   └── package.json          # Dependências e scripts
 └── README.md            # Este arquivo
 ```
 

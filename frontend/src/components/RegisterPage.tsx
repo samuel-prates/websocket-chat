@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { register } from '../utils/authUtils';
+import Link from "next/link";
 
 const RegisterPage = () => {
     const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
@@ -14,7 +15,7 @@ const RegisterPage = () => {
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await register(name, username, password);
+            await register(name, email, password);
             router.push('/');
         } catch (err) {
             console.error('Registration error:', err);
@@ -24,39 +25,43 @@ const RegisterPage = () => {
 
     return (
         <div className="flex items-center justify-center h-screen">
-            <form onSubmit={handleRegister} className="bg-white p-6 rounded shadow-md">
-                <h1 className="text-2xl mb-4">Register</h1>
+            <form onSubmit={handleRegister} className="form-pattern">
+                <h1 className="form-h1-pattern">Register</h1>
                 {error && <p className="text-red-500">{error}</p>}
-                <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Name</label>
+                <div className="mb-4 pt-3">
+                    <label className="label-pattern">Name</label>
                     <input
                         type="text"
-                        className="border rounded w-full py-2 px-3"
+                        className="input-padrao"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Username</label>
+                    <label className="label-pattern">E-mail</label>
                     <input
-                        type="text"
-                        className="border rounded w-full py-2 px-3"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        type="email"
+                        className="input-padrao"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">Password</label>
+                    <label className="label-pattern">Password</label>
                     <input
                         type="password"
-                        className="border rounded w-full py-2 px-3"
+                        className="input-padrao"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                <button type="submit" className="submit-pattern">
                     Register
                 </button>
+
+                <p className="bottom-pattern">
+                    <Link href="/" className="text-center">Voltar</Link>
+                </p>
             </form>
         </div>
     );

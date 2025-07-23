@@ -139,7 +139,7 @@ export const sendMessage = (
 
   // Add message to UI immediately with pending status
   const pendingMsg = { ...msg, pending: true };
-  setMessages(prevMessages => [...prevMessages, pendingMsg]);
+  //setMessages(prevMessages => [...prevMessages, pendingMsg]);
 
   // Send with acknowledgment
   socket.emit('chat message', msg, (response: any) => {

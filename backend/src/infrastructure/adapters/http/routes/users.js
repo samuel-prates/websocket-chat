@@ -6,9 +6,9 @@ const passport = require('passport');
 let userUseCases;
 
 router.post('/register', async (req, res) => {
-    const { name, username, password } = req.body;
+    const { name, email, password } = req.body;
     try {
-        const user = await userUseCases.registerUser(name, username, password);
+        const user = await userUseCases.registerUser(name, email, password);
         res.json({ msg: 'User registered successfully', user: user });
     } catch (err) {
         console.error(err.message);

@@ -21,9 +21,9 @@ const UserList: React.FC<UserListProps> = ({
   const filteredUsers = users.filter(user => user.id !== currentUser._id);
 
   return (
-    <div className="w-full bg-gray-200 p-4 h-full">
+    <div className="w-full bg-gray-50 p-4 h-full">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Users</h2>
+        <h2 className="text-xl font-bold">Usuários</h2>
         <button 
           onClick={onLogout}
           className="bg-red-500 text-white py-1 px-3 rounded text-sm"
@@ -36,14 +36,16 @@ const UserList: React.FC<UserListProps> = ({
           <li 
             key={user.id}
             onClick={() => onSelectUser(user)}
-            className={`cursor-pointer p-2 rounded flex justify-between items-center ${
-              selectedUser?._id === user._id ? 'bg-blue-500 text-white' : ''
+            className={`cursor-pointer p-2 rounded-2xl flex justify-left items-center gap-2 ${
+              selectedUser?._id === user._id ? 'bg-blue-200 text-gray-800' : ''
             }`}
           >
+
+            <span><img src="/hulkGPT2.png" alt="User Avatar" className="img-pattern-sm"/></span>
             <span>
-              {user.username} {user.online ? 
-                <span className="text-green-500">(Online)</span> : 
-                <span className="text-red-500">(Offline)</span>
+              {user.name} {user.online ?
+                <p className="text-green-500">(Online)</p> :
+                <p className="text-red-500">(Offline)</p>
               }
             </span>
             {unreadMessages[user._id] > 0 && (

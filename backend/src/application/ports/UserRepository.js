@@ -1,5 +1,5 @@
 class UserRepository {
-    async findByUsername(username) {
+    async findByEmail(email) {
         throw new Error('Method not implemented');
     }
     async findById(id) {

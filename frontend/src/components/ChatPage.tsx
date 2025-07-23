@@ -188,7 +188,6 @@ const ChatPage = () => {
     <div className="flex flex-col h-screen">
       <ChatHeader 
         currentUser={user} 
-        connectionStatus={connectionStatus} 
       />
       <div className="flex flex-1 overflow-hidden">
         <div className="w-1/4">

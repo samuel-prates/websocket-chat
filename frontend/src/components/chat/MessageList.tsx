@@ -26,7 +26,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, currentUser, select
 
   return (
     <div className="flex-1 p-4 overflow-y-auto bg-white overflow-x-hidden">
-      <h2 className="text-xl font-bold mb-4 capitalize">{selectedUser.username}</h2>
+      <h2 className="text-xl font-bold mb-4 capitalize">{selectedUser.email}</h2>
       <div className="flex flex-col space-y-2 p-5 m-[-18px] mt-5 h-full bg-gray-100">
         {messages.map((msg, index) => (
           <div 

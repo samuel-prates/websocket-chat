@@ -49,7 +49,7 @@ const MessageForm: React.FC<MessageFormProps> = ({
       <div className="flex">
         <input
           type="text"
-          className="border rounded w-full py-2 px-3"
+          className="input-padrao"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."

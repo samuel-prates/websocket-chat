@@ -4,11 +4,11 @@ const User = require('../../persistence/mongodb/models/User'); // Usar o modelo 
 
 module.exports = function(passport) {
     passport.use(
-        new LocalStrategy({ usernameField: 'username' }, async (username, password, done) => {
+        new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
             try {
-                const user = await User.findOne({ username: username });
+                const user = await User.findOne({ email: email });
                 if (!user) {
-                    return done(null, false, { message: 'That username is not registered' });
+                    return done(null, false, { message: 'That email is not registered' });
                 }
 
                 const isMatch = await bcrypt.compare(password, user.password);

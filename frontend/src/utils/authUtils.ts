@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5000/api';
 
 interface UserDefault {
   name: string;
-  username: string;
+  email: string;
   online?: boolean;
 }
 
@@ -18,15 +18,15 @@ export interface UserWithinList extends User {
 }
 
 /**
- * Login a user with username and password
- * @param username User's username
+ * Login a user with email and password
+ * @param email User's email
  * @param password User's password
  * @returns The user object if login is successful
  * @throws Error if login fails
  */
-export const login = async (username: string, password: string): Promise<User> => {
+export const login = async (email: string, password: string): Promise<User> => {
   try {
-    const res = await axios.post(`${API_URL}/users/login`, { username, password });
+    const res = await axios.post(`${API_URL}/users/login`, { email, password });
     const user = res.data.user;
     
     // Store user in cookie
@@ -42,14 +42,14 @@ export const login = async (username: string, password: string): Promise<User> =
 /**
  * Register a new user
  * @param name User's name
- * @param username User's username
+ * @param email User's email
  * @param password User's password
  * @returns Success message if registration is successful
  * @throws Error if registration fails
  */
-export const register = async (name: string, username: string, password: string): Promise<string> => {
+export const register = async (name: string, email: string, password: string): Promise<string> => {
   try {
-    const res = await axios.post(`${API_URL}/users/register`, { name, username, password });
+    const res = await axios.post(`${API_URL}/users/register`, { name, email, password });
     return res.data.message || 'Registration successful';
   } catch (err) {
     console.error('Registration error:', err);

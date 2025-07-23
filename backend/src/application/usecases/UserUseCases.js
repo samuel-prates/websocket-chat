@@ -6,19 +6,19 @@ class UserUseCases {
         this.authService = authService;
     }
 
-    async registerUser(name, username, password) {
-        const existingUser = await this.userRepository.findByUsername(username);
+    async registerUser(name, email, password) {
+        const existingUser = await this.userRepository.findByEmail(email);
         if (existingUser) {
             throw new Error('User already exists');
         }
 
         const hashedPassword = await this.authService.hashPassword(password);
-        const newUser = new User(null, name, username, hashedPassword);
+        const newUser = new User(null, name, email, hashedPassword);
         return this.userRepository.save(newUser);
     }
 
-    async loginUser(username, password) {
-        const user = await this.userRepository.findByUsername(username);
+    async loginUser(email, password) {
+        const user = await this.userRepository.findByEmail(email);
         if (!user) {
             throw new Error('Invalid credentials');
         }
